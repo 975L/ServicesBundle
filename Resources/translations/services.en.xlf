@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="services.en.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>label.accept_tos</source>
+                <target><![CDATA[I agree with <a href="%tosUrl%">Terms of sales</a>]]></target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>label.mandatory_field</source>
+                <target>* Mandatory field</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>label.terms_of_sales_filename</source>
+                <target>TermsOfSales</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>text.gdpr</source>
+                <target>I agree that this website stores the submitted data so that it can answer my request</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>label.ip</source>
+                <target>IP Address</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

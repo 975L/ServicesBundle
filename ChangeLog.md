@@ -1,5 +1,9 @@
 # Changelog
 
+v1.1
+----
+- Added core files (26/08/2018)
+
 v1.0.1
 ------
 - Corrected name in composer.json (26/08/2018)

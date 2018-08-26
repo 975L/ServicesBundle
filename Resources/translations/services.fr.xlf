@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="services.en.xlf">
+        <body>
+            <trans-unit id="1">
+                <source>label.accept_tos</source>
+                <target><![CDATA[J'accepte les <a href="%tosUrl%">Conditions générales de vente</a>]]></target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>label.mandatory_field</source>
+                <target>* Champ requis</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>label.terms_of_sales_filename</source>
+                <target>ConditionsGeneralesVente</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>text.gdpr</source>
+                <target>Je consens que ce site Web stocke les données soumises afin qu'il puisse répondre à ma demande</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>label.ip</source>
+                <target>Adresse IP</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
