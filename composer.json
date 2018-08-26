@@ -1,5 +1,5 @@
 {
-    "name": "c975l/contactform-bundle",
+    "name": "c975l/services-bundle",
     "type": "symfony-bundle",
     "description": "Commons services used by c975L bundles",
     "keywords": ["symfony", "bundle"],
