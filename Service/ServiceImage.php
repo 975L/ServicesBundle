@@ -65,7 +65,7 @@ class ServiceImage implements ServiceImageInterface
     /**
      * {@inheritdoc}
      */
-    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, $compression = 75)
+    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75)
     {
         if (null !== $file) {
             //Defines data

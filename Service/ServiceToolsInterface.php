@@ -19,7 +19,7 @@ interface ServiceToolsInterface
     /**
      * Creates flash message
      */
-    public function createFlash(string $translationDomain, string $text, string $style = 'success', array $options = array());
+    public function createFlash(string $translationDomain = null, string $text, string $style = 'success', array $options = array());
 
     /**
      * Gets the url

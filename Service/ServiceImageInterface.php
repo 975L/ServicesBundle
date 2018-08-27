@@ -17,8 +17,7 @@ namespace c975L\ServicesBundle\Service;
 interface ServiceImageInterface
 {
     /**
-     * Deletes picture file
-     * @return ContactForm
+     * Deletes image file
      */
     public function delete(string $file);
 
@@ -29,8 +28,8 @@ interface ServiceImageInterface
     public function getFolder(string $folder);
 
     /**
-     * Resizes picture
+     * Resizes image
      * @return bool
      */
-    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, $compression = 75);
+    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75);
 }

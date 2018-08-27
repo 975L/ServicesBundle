@@ -54,12 +54,16 @@ class ServiceTools implements ServiceToolsInterface
     /**
      * {@inheritdoc}
      */
-    public function createFlash(string $translationDomain, string $text, string $style = 'success', array $options = array())
+    public function createFlash(string $translationDomain = null, string $text, string $style = 'success', array $options = array())
     {
+        if (null !== $translationDomain) {
+            $text = $this->translator->trans($text, $options, $translationDomain);
+        }
+
         $this->request
             ->getSession()
             ->getFlashBag()
-            ->add($style, $this->translator->trans($text, $options, $translationDomain))
+            ->add($style, $text)
         ;
     }
 

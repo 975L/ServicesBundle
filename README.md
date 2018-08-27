@@ -3,7 +3,8 @@ ServicesBundle
 
 ServicesBundle does the following:
 
-- Defines a set of services used by c975L bundles
+- Defines services used by c975L bundles,
+- Defines translations used by c975L bundles,
 
 [ServicesBundle dedicated web page](https://975l.com/en/pages/services-bundle).
 
