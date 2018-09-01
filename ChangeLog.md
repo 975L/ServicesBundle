@@ -1,5 +1,7 @@
 # Changelog
 
+- Updated composer.json (01/09/2018)
+
 v1.1.1
 ------
 - Updated `README.md` (26/08/2018)
