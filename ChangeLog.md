@@ -1,5 +1,10 @@
 # Changelog
 
+v1.1.2
+------
+- Updated composer.json (01/09/2018)
+- Added check for `null !== Request` in case called from Command (02/09/2018)
+
 v1.1.1
 ------
 - Updated `README.md` (26/08/2018)
