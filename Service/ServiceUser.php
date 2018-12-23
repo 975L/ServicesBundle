@@ -10,7 +10,6 @@
 namespace c975L\ServicesBundle\Service;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use c975L\ServicesBundle\Service\ServiceUserInterface;
 
 /**
  * Services related to ServiceUserInterface

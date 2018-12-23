@@ -9,11 +9,9 @@
 
 namespace c975L\ServicesBundle\Service;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use c975L\EventsBundle\Entity\Event;
-use c975L\ServicesBundle\Service\ServiceImageInterface;
 
 /**
  * Services related to ServiceImageInterface

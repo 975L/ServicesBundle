@@ -9,11 +9,11 @@
 
 namespace c975L\ServicesBundle\Service;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
-use c975L\ServicesBundle\Service\ServiceToolsInterface;
 
 /**
  * Services related to ServiceToolsInterface
@@ -24,7 +24,7 @@ class ServiceTools implements ServiceToolsInterface
 {
     /**
      * Stores current Request
-     * @var RequestStack
+     * @var Request
      */
     private $request;
 

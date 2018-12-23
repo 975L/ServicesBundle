@@ -11,8 +11,6 @@ namespace c975L\ServicesBundle\Service;
 
 use Knp\Snappy\Pdf;
 use Symfony\Component\Translation\TranslatorInterface;
-use c975L\ServicesBundle\Service\ServiceToolsInterface;
-use c975L\ServicesBundle\Service\ServicePdfInterface;
 
 /**
  * Services related to ServicePdfInterface

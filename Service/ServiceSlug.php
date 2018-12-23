@@ -9,10 +9,9 @@
 
 namespace c975L\ServicesBundle\Service;
 
-use Symfony\Component\Routing\RouterInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Cocur\Slugify\Slugify;
-use c975L\ServicesBundle\Service\ServiceSlugInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * Services related to ServiceSlugInterface

@@ -29,7 +29,7 @@ interface ServiceSlugInterface
     public function match(string $route, object $object, string $slug);
 
     /**
-     * Checks unicity of slugged text agains collection of $object ('Bundle:Entity')
+     * Checks unicity of slugged text against collection of $object ('Bundle:Entity')
      * @return string
      */
     public function slugify(string $object, string $text);
