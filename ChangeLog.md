@@ -1,5 +1,9 @@
 # Changelog
 
+v1.1.4
+------
+- Modified required versions in `composer.json` (25/12/2018)
+
 v1.1.3
 ------
 - Added rector to composer dev part (23/12/2018)
