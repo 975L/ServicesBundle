@@ -1,5 +1,9 @@
 # Changelog
 
+v1.2
+----
+- Added `.sh` scripts (14/01/2019)
+
 v1.1.4
 ------
 - Modified required versions in `composer.json` (25/12/2018)
