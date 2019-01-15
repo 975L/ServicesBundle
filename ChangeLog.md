@@ -1,5 +1,9 @@
 # Changelog
 
+v1.2.1
+------
+- Updated compose.json (15/01/2019)
+
 v1.2
 ----
 - Added `.sh` scripts (14/01/2019)
