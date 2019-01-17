@@ -15,9 +15,6 @@ source "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCommon.sh";
 #Moves to backup folder
 cd $BackupFinalFolder;
 
-#Begin of backup
-echo 'Begin of backup: '$BackupDateTime >> $tmpEmailFile;
-
 #Complete backup
 if [[ ! -f $BackupDateTimeFile ]] || ([[ $DayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then
     echo 'Complete Folders backup for ' $SiteName >> $tmpEmailFile;
@@ -47,9 +44,6 @@ else
     #Deletes temporary files
     rm $tmpModifiedFile;
 fi
-
-#End of backup
-echo 'End of backup' >> $tmpEmailFile;
 
 #Cleans backup
 bash "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCleaning.sh";

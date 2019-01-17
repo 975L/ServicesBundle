@@ -1,5 +1,11 @@
 # Changelog
 
+v1.2.3
+------
+- Modified date formats in scripts (17/01/2019)
+- Added duration for backup (17/01/2019)
+- Modified message sent in email (17/01/2019)
+
 v1.2.2
 ------
 - Corrected `BackupCommon.sh` (17/01/2019)

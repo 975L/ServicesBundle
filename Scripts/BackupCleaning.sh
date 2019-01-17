@@ -11,6 +11,10 @@
 
 #Sends by email once a day
 if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
+    #End of backup
+    echo $'\n''End of backup: '`date +"%F %T"` >> $tmpEmailFile;
+    Duration=$SECONDS;
+    echo $'\n''Duration: $(($Duration / 60)) minutes and $(($Duration % 60)) seconds' >> $tmpEmailFile;
     cat $tmpEmailFile;
 fi
 rm $tmpEmailFile;

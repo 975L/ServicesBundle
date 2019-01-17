@@ -18,7 +18,6 @@ export WeekDayNumber=`date +"%w"`;
 export DayNumber=`date +"%d"`;
 export HourNumber=`date +"%H"`;
 export BackupFileDateTime=`date +"%Y%m%d%H%M"`;
-export BackupDateTime=`date +"%Y-%m-%d %H:%M"`;
 
 #Creates backup folders
 Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
@@ -46,3 +45,7 @@ export DayCompleteBackupWebsite=${DayCompleteBackupWebsite#"day="};
 
 HourCompleteBackupWebsite=`grep "hour=" $BackupConfigFile`;
 export HourCompleteBackupWebsite=${HourCompleteBackupWebsite#"hour="};
+
+#Begin of backup
+echo 'Begin of backup: '`date +"%F %T"` >> $tmpEmailFile;
+SECONDS=0;

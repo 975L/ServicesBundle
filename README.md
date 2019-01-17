@@ -54,7 +54,7 @@ This script is to be run after the Git repository has been updated (via `git pul
 #!/bin/bash
 Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
 #YOUR_PHP_VERSION is the name of the php binary you will use i.e. `php-7.3`
-source $Folder/../../vendor/c975l/services-bundle/Scripts/GitHookPostUpdate.sh YOUR_PHP_VERSION;
+source $Folder/../../PATH_TO_ROOT_FOLDER/vendor/c975l/services-bundle/Scripts/GitHookPostUpdate.sh YOUR_PHP_VERSION;
 exit 0
 ```
 
