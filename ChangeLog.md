@@ -1,8 +1,14 @@
 # Changelog
 
+v1.2.2
+------
+- Corrected `BackupCommon.sh` (17/01/2019)
+- Corrected `BackupMySql.sh` (17/01/2019)
+- Added dump of whole database in `BackupMySql.sh` (17/01/2019)
+
 v1.2.1
 ------
-- Updated compose.json (15/01/2019)
+- Updated composer.json (15/01/2019)
 
 v1.2
 ----

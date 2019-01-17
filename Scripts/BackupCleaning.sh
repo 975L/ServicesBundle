@@ -13,6 +13,7 @@
 if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
     cat $tmpEmailFile;
 fi
+rm $tmpEmailFile;
 
 #Deletes files related to their size
 find $BackupFinalFolder/ -size -50c -type f -delete;

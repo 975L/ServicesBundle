@@ -15,10 +15,15 @@ source "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCommon.sh";
 #Moves to backup folder
 cd $BackupFinalFolder;
 
+#Begin of backup
+echo 'Begin of backup: '$BackupDateTime >> $tmpEmailFile;
+
 #Backups tables (structure + data) excepting *_archives
 echo 'Mysql backup for tables in '$Database >> $tmpEmailFile;
-for Table in $(mysql --defaults-extra-file=$BackupConfigFile --database=$Database --execute="SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$Database' AND TABLE_NAME NOT LIKE '%_archives' AND TABLE_TYPE != 'VIEW';"); do
+Tables=$(mysql --defaults-extra-file=$BackupConfigFile --database=$Database --execute="SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$Database' AND TABLE_NAME NOT LIKE '%_archives' AND TABLE_TYPE != 'VIEW';");
+for Table in $Tables; do
     if [ $Table != 'TABLE_NAME' ]; then
+        echo '- '$Table >> $tmpEmailFile;
         mysqldump \
             --defaults-extra-file=$BackupConfigFile \
             --skip-comments \
@@ -29,7 +34,7 @@ for Table in $(mysql --defaults-extra-file=$BackupConfigFile --database=$Databas
             --single-transaction \
             --triggers \
             --hex-blob \
-            $Database $Table > $Database"-"$Table".sql";
+            $Database $Table > $Database"_-_"$Table".sql";
     fi
 done
 
@@ -46,9 +51,11 @@ fi
 
 #Backups tables (structure + data) for _archives only once a day
 if [ $HourNumber == $HourCompleteBackupWebsite ]; then
+    #*_archives database backup
     echo 'Mysql backup for tables *_archives in '$Database >> $tmpEmailFile;
     for Table in $(mysql --defaults-extra-file=$BackupConfigFile --database=$Database --execute="SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$Database' AND TABLE_NAME LIKE '%_archives';"); do
         if [ $Table != 'TABLE_NAME' ]; then
+            echo '- '$Table >> $tmpEmailFile;
             mysqldump \
                 --defaults-extra-file=$BackupConfigFile \
                 --skip-comments \
@@ -59,9 +66,23 @@ if [ $HourNumber == $HourCompleteBackupWebsite ]; then
                 --single-transaction \
                 --triggers \
                 --hex-blob \
-                $Database $Table > $Database"-"$Table".sql";
+                $Database $Table > $Database"_-_"$Table".sql";
         fi
     done
+
+    #Whole database backup
+    echo 'Mysql backup for whole database '$Database >> $tmpEmailFile;
+    mysqldump \
+        --defaults-extra-file=$BackupConfigFile \
+        --skip-comments \
+        --compact \
+        --force \
+        --lock-tables \
+        --quick \
+        --single-transaction \
+        --triggers \
+        --hex-blob \
+        $Database > $Database"_-_WHOLE_DATABASE.sql";
 
     #Compresses backups in tar.bz2
     Files=$(shopt -s nullglob dotglob; echo ./*.sql);
@@ -74,6 +95,9 @@ if [ $HourNumber == $HourCompleteBackupWebsite ]; then
             "MYSQL_-_"$Database"_-_"$DayDateTime"_-_Archives.sql.tar.bz2" *.sql;
     fi
 fi
+
+#End of backup
+echo 'End of backup' >> $tmpEmailFile;
 
 #Cleans backup
 bash "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCleaning.sh";
