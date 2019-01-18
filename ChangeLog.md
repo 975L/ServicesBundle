@@ -1,5 +1,9 @@
 # Changelog
 
+V1.2.4
+------
+- Corrected cleaning for bash scripts (18/01/2019)
+
 v1.2.3
 ------
 - Modified date formats in scripts (17/01/2019)

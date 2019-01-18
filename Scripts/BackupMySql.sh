@@ -10,7 +10,8 @@
 # @copyright 2017 975L <contact@975l.com>
 
 #Initializes variables and creates folders
-source "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCommon.sh";
+Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
+source $Folder/BackupCommon.sh;
 
 #Moves to backup folder
 cd $BackupFinalFolder;
@@ -68,7 +69,7 @@ if [ $HourNumber == $HourCompleteBackupWebsite ]; then
     done
 
     #Whole database backup
-    echo $'\n''Mysql backup for whole database '$Database >> $tmpEmailFile;
+    echo $'\n''Mysql backup for WHOLE database '$Database >> $tmpEmailFile;
     mysqldump \
         --defaults-extra-file=$BackupConfigFile \
         --skip-comments \
@@ -94,6 +95,6 @@ if [ $HourNumber == $HourCompleteBackupWebsite ]; then
 fi
 
 #Cleans backup
-bash "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCleaning.sh";
+source $Folder/BackupCleaning.sh;
 
 exit 0

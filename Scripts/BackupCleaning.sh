@@ -14,16 +14,6 @@ if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
     #End of backup
     echo $'\n''End of backup: '`date +"%F %T"` >> $tmpEmailFile;
     Duration=$SECONDS;
-    echo $'\n''Duration: $(($Duration / 60)) minutes and $(($Duration % 60)) seconds' >> $tmpEmailFile;
-    cat $tmpEmailFile;
+    echo $'\n''Duration: '$(($Duration / 60))' minutes and '$(($Duration % 60))' seconds' >> $tmpEmailFile;
 fi
 rm $tmpEmailFile;
-
-#Deletes files related to their size
-find $BackupFinalFolder/ -size -50c -type f -delete;
-
-#Deletes empty folders
-find $BackupFolder/ -type d -empty -delete
-
-#Change l'heure du fichier horaire
-touch -t $BackupFileDateTime $BackupDateTimeFile

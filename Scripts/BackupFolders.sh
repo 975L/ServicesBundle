@@ -10,7 +10,8 @@
 # @copyright 2017 975L <contact@975l.com>
 
 #Initializes variables and creates folders
-source "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCommon.sh";
+Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
+source $Folder/BackupCommon.sh;
 
 #Moves to backup folder
 cd $BackupFinalFolder;
@@ -46,6 +47,15 @@ else
 fi
 
 #Cleans backup
-bash "$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )/BackupCleaning.sh";
+source $Folder/BackupCleaning.sh;
+
+#Deletes files related to their size
+find $BackupFinalFolder/ -size -50c -type f -delete;
+
+#Deletes empty folders
+find $BackupFolder/ -type d -empty -delete
+
+#Change l'heure du fichier horaire
+touch -t $BackupFileDateTime $BackupDateTimeFile
 
 exit 0
