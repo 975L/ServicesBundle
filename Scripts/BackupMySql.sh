@@ -15,8 +15,11 @@ source $Folder/BackupCommon.sh;
 #Moves to backup folder
 cd $BackupFinalFolder;
 
+#Begin of backup
+SECONDS=0;
+echo $'\n''>>> Mysql backup for tables in "'$Database'": '`date +"%F %T"`' <<<' >> $tmpEmailFile;
+
 #Backups tables (structure + data) excepting *_archives
-echo $'\n''>>> Mysql backup for tables in "'$Database'" <<<' >> $tmpEmailFile;
 Tables=$(mysql --defaults-extra-file=$BackupConfigFile --database=$Database --execute="SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$Database' AND TABLE_NAME NOT LIKE '%_archives' AND TABLE_TYPE != 'VIEW';");
 for Table in $Tables; do
     if [ $Table != 'TABLE_NAME' ]; then

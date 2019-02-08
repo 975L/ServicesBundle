@@ -68,7 +68,7 @@ You can include them in a crontab like in the following to execute each hour bet
 MAILTO=YOUR_EMAIL_ADDRESS
 15       6-22       *       *       *       bash /server_path_website/vendor/c975l/services-bundle/Scripts/BackupXXX.sh
 ```
-An email wil be sent via cron on each error and only once a day when error less.
+An email wil be sent via cron on each error and only once a day (at the hour specified in config file, see below) to sum up the backup actions.
 
 You have to create a config file `/config/backup_config.cnf` with the following data (without space) **Keep in mind to add this file to your `.gitignore`**:
 ```txt

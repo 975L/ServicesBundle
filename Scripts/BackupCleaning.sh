@@ -8,19 +8,18 @@
 #
 # Script to clean files and achieve final things
 
-#Sends by email once a day
-#if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
-    #End of backup
-    echo $'\n''End of backup: '`date +"%F %T"` >> $tmpEmailFile;
-    Duration=$SECONDS;
-    echo 'Duration: '$(($Duration / 60))' minutes and '$(($Duration % 60))' seconds' >> $tmpEmailFile;
-    echo 'Made with https://github.com/975L/ServicesBundle'$'\n' >> $tmpEmailFile;
-    cat $tmpEmailFile;
-#fi
-rm $tmpEmailFile;
-
 #Deletes files related to their size
 find $BackupFinalFolder/ -size -50c -type f -delete;
 
 #Deletes empty folders
 find $BackupFolder/ -type d -empty -delete;
+
+#End of backup
+Duration=$SECONDS;
+echo $'\n''End of backup: '`date +"%F %T"`' - Duration: '$(($Duration / 60))' minutes and '$(($Duration % 60))' seconds' >> $tmpEmailFile;
+
+#Sends by email once a day at the hour specified in config file
+if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
+    cat $tmpEmailFile;
+    rm $tmpEmailFile;
+fi

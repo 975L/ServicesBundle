@@ -16,7 +16,8 @@ source $Folder/BackupCommon.sh;
 cd $BackupFinalFolder;
 
 #Begin of backup
-echo $'\n''>>> Folders and Files backup for "'$SiteName'" <<<' >> $tmpEmailFile;
+SECONDS=0;
+echo $'\n''>>> Folders and Files backup for "'$SiteName'": '`date +"%F %T"`' <<<' >> $tmpEmailFile;
 
 #Complete backup
 if [[ ! -f $BackupDateTimeFile ]] || ([[ $WeekDayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then

@@ -43,7 +43,3 @@ export DayCompleteBackupWebsite=${DayCompleteBackupWebsite#"day="};
 
 HourCompleteBackupWebsite=`grep "hour=" $BackupConfigFile`;
 export HourCompleteBackupWebsite=${HourCompleteBackupWebsite#"hour="};
-
-#Begin of backup
-echo 'Begin of backup: '`date +"%F %T"` > $tmpEmailFile;
-SECONDS=0;

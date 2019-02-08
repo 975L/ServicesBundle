@@ -1,5 +1,10 @@
 # Changelog
 
+v1.2.6
+------
+- Corrected BackupCleaning.sh (08/02/2019)
+- Modified behaviour of sent email, for Backup scripts, to sum up the actions (08/02/2019)
+
 v1.2.5
 ------
 - Modified the BackupFolders.sh for complete backup to occur on week day instead of month day (31/01/2019)
