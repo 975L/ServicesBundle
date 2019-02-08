@@ -2,20 +2,18 @@
 
 # (c) 2018: 975L <contact@975l.com>
 # (c) 2018: Laurent Marquet <laurent.marquet@laposte.net>
+# @author Laurent Marquet <laurent.marquet@laposte.net>
 # This source file is subject to the MIT license that is bundled
 # with this source code in the file LICENSE.
 #
 # Script to intialize variables and create folders
-# @author Laurent Marquet <laurent.marquet@laposte.net>
-# @copyright 2017 975L <contact@975l.com>
 
 #Date and Time variables
 export YearDate=`date +"%Y"`;
 export MonthDate=`date +"%Y-%m"`;
 export DayDate=`date +"%F"`;
 export DayDateTime=`date +"%F_-_%H-%M"`;
-export WeekDayNumber=`date +"%w"`;
-export DayNumber=`date +"%d"`;
+export WeekDayNumber=`date +"%u"`;
 export HourNumber=`date +"%H"`;
 export BackupFileDateTime=`date +"%Y%m%d%H%M"`;
 

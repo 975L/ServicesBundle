@@ -2,12 +2,11 @@
 
 # (c) 2018: 975L <contact@975l.com>
 # (c) 2018: Laurent Marquet <laurent.marquet@laposte.net>
+# @author Laurent Marquet <laurent.marquet@laposte.net>
 # This source file is subject to the MIT license that is bundled
 # with this source code in the file LICENSE.
 #
 # Script executed after the update of the Git repository to clean cache and delete uneeeded folders/files
-# @author Laurent Marquet <laurent.marquet@laposte.net>
-# @copyright 2017 975L <contact@975l.com>
 
 #Gets php binary name from command line
 PhpVersion=$1;

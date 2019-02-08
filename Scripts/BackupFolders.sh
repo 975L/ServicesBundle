@@ -2,12 +2,11 @@
 
 # (c) 2018: 975L <contact@975l.com>
 # (c) 2018: Laurent Marquet <laurent.marquet@laposte.net>
+# @author Laurent Marquet <laurent.marquet@laposte.net>
 # This source file is subject to the MIT license that is bundled
 # with this source code in the file LICENSE.
 #
 # Script to make a backup of the specified folders.
-# @author Laurent Marquet <laurent.marquet@laposte.net>
-# @copyright 2017 975L <contact@975l.com>
 
 #Initializes variables and creates folders
 Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
@@ -16,9 +15,12 @@ source $Folder/BackupCommon.sh;
 #Moves to backup folder
 cd $BackupFinalFolder;
 
+#Begin of backup
+echo $'\n''>>> Folders and Files backup for "'$SiteName'" <<<' >> $tmpEmailFile;
+
 #Complete backup
-if [[ ! -f $BackupDateTimeFile ]] || ([[ $DayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then
-    echo 'Complete Folders backup for ' $SiteName >> $tmpEmailFile;
+if [[ ! -f $BackupDateTimeFile ]] || ([[ $WeekDayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then
+    echo '- COMPLETE Folders backup' >> $tmpEmailFile;
     nice tar \
         --bzip2 \
         --create \
@@ -33,13 +35,15 @@ else
         > $tmpModifiedFile;
     #Compresses files if tmpModifiedFile is not empty
     if [ $(stat --format=%s "$tmpModifiedFile") != '0' ]; then
-        echo 'Partial Folders backup for ' $SiteName >> $tmpEmailFile;
+        echo '- PARTIAL Folders backup' >> $tmpEmailFile;
         cat $tmpModifiedFile >> $tmpEmailFile;
         nice tar \
             --files-from=$tmpModifiedFile \
             --bzip2 \
             --create \
-            --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Partial.tar.bz2";
+            --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Partial.tar.bz2" 2>/dev/null;
+    else
+        echo '- NO FILE to save' >> $tmpEmailFile;
     fi
 
     #Deletes temporary files
@@ -48,12 +52,6 @@ fi
 
 #Cleans backup
 source $Folder/BackupCleaning.sh;
-
-#Deletes files related to their size
-find $BackupFinalFolder/ -size -50c -type f -delete;
-
-#Deletes empty folders
-find $BackupFolder/ -type d -empty -delete
 
 #Change l'heure du fichier horaire
 touch -t $BackupFileDateTime $BackupDateTimeFile

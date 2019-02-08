@@ -1,6 +1,12 @@
 # Changelog
 
-V1.2.4
+v1.2.5
+------
+- Modified the BackupFolders.sh for complete backup to occur on week day instead of month day (31/01/2019)
+- Corrected Scripts for sending email (07/02/2019)
+- Added `2>/dev/null` for tar actions to avoid messages in email sent (08/02/2019)
+
+v1.2.4
 ------
 - Corrected cleaning for bash scripts (18/01/2019)
 
