@@ -1,5 +1,9 @@
 # Changelog
 
+v1.2.6.1
+--------
+- Modified Dependencyinjection rootNode to be not empty (13/02/2019)
+
 v1.2.6
 ------
 - Corrected BackupCleaning.sh (08/02/2019)
