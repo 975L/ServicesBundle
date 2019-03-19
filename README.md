@@ -43,6 +43,27 @@ How to use
 ----------
 Call the needed service via its interface and use its methods.
 
+Example resize image
+--------------------
+If you want to resize an image, you can do the following:
+
+```php
+use c975L\ServicesBundle\Service\ServiceImageInterface;
+
+class YourClass
+{
+    private $imageService;
+
+    public yourMethod(ServiceImageInterface $imageService)
+    {
+        //Do your stuff...
+
+        //Resizes image
+        $imageService->resize($imageFile, $folder, $filename, $format, $finalHeight, $compression);
+    }
+}
+```
+
 `.sh` scripts
 -------------
 These scripts are not directly related to Symfony but to its production steps for `GitHookPostUpdate.sh` and its backup `BackupXXX.sh`. **They are programmed to work on the Synfony 4(flex) structure AND on a GNU/Linux server. You can find more information on them below.

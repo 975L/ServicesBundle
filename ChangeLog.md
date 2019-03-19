@@ -1,5 +1,8 @@
 # Changelog
 
+v1.2.6.2
+- Added example to resize image in README.md (19/03/2019)
+
 v1.2.6.1
 --------
 - Modified Dependencyinjection rootNode to be not empty (13/02/2019)
