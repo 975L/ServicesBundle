@@ -1,6 +1,11 @@
 # Changelog
 
+v1.2.6.3
+--------
+- Changed Github's author reference url (08/04/2019)
+
 v1.2.6.2
+--------
 - Added example to resize image in README.md (19/03/2019)
 
 v1.2.6.1
