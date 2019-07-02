@@ -17,11 +17,11 @@ cd $BackupFinalFolder;
 
 #Begin of backup
 SECONDS=0;
-echo $'\n''>>> Folders and Files backup for "'$SiteName'": '`date +"%F %T"`' <<<' >> $tmpEmailFile;
+echo $'\n''Folders and Files backup for "'$SiteName'": '`date +"%F %T"` >> $tmpEmailFile;
 
 #Complete backup
 if [[ ! -f $BackupDateTimeFile ]] || ([[ $WeekDayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then
-    echo '- COMPLETE Folders backup' >> $tmpEmailFile;
+    echo 'COMPLETE Folders backup' >> $tmpEmailFile;
     nice tar \
         --bzip2 \
         --create \
@@ -36,7 +36,7 @@ else
         > $tmpModifiedFile;
     #Compresses files if tmpModifiedFile is not empty
     if [ $(stat --format=%s "$tmpModifiedFile") != '0' ]; then
-        echo '- PARTIAL Folders backup' >> $tmpEmailFile;
+        echo 'PARTIAL Folders backup' >> $tmpEmailFile;
         cat $tmpModifiedFile >> $tmpEmailFile;
         nice tar \
             --files-from=$tmpModifiedFile \
@@ -44,7 +44,7 @@ else
             --create \
             --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Partial.tar.bz2" 2>/dev/null;
     else
-        echo '- NO FILE to save' >> $tmpEmailFile;
+        echo 'NO FILE to save' >> $tmpEmailFile;
     fi
 
     #Deletes temporary files
