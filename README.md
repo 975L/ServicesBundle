@@ -115,3 +115,9 @@ This script makes a backup of the tables in MySql server. All the tables are mys
 BackupFolders.sh
 ================
 This script makes a backup of the `public` folder. There is a complete backup once a week and a partial backup (only new and newer files) other times.
+
+Twig Extension
+==============
+Using the provided Twig extension `RouteExists` you can check via `{% if route_exists('YOUR_ROUTE_TO_CHECK') %}` if the Route is available.
+
+**If this project help you to reduce time to develop, you can [buy me a coffee](https://www.buymeacoffee.com/LaurentMarquet) :)**

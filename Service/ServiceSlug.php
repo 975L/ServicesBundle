@@ -32,7 +32,10 @@ class ServiceSlug implements ServiceSlugInterface
      */
     private $router;
 
-    public function __construct(EntityManagerInterface $em, RouterInterface $router)
+    public function __construct(
+        EntityManagerInterface $em,
+        RouterInterface $router
+    )
     {
         $this->em = $em;
         $this->router = $router;

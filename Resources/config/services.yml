@@ -5,3 +5,6 @@ services:
 
     c975L\ServicesBundle\Service\:
         resource: '../../Service/*'
+
+    c975L\ServicesBundle\Twig\:
+        resource: '../../Twig/*'

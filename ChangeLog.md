@@ -1,5 +1,9 @@
 # Changelog
 
+v1.2.8
+------
+- Added Twig function to check if a Route exists (14/07/2019)
+
 v1.2.7
 ------
 - Removed ">>>" echoed in email to avoid having indentation (02/07/2019)
