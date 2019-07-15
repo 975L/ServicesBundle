@@ -51,9 +51,10 @@ class ServicePdf implements ServicePdfInterface
     /**
      * {@inheritdoc}
      */
-    public function html2Pdf(string $filename, string $html)
+    public function getPdfFile(string $filename, string $url)
     {
-        $content = $this->knpSnappyPdf->getOutputFromHtml($html);
+        $content = file_get_contents($this->serviceTools->getUrl($url));
+        $filename = $this->translator->trans($filename, array(), 'services') . '.pdf';
 
         return array($content, $filename, 'application/pdf');
     }
@@ -61,10 +62,20 @@ class ServicePdf implements ServicePdfInterface
     /**
      * {@inheritdoc}
      */
-    public function getPdfFile(string $filename, string $url)
+    public function getPdfFilePath(string $filename, string $url)
     {
-        $content = file_get_contents($this->serviceTools->getUrl($url));
+        $filePath = $this->serviceTools->getUrl($url);
         $filename = $this->translator->trans($filename, array(), 'services') . '.pdf';
+
+        return array($filePath, $filename, 'application/pdf');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function html2Pdf(string $filename, string $html)
+    {
+        $content = $this->knpSnappyPdf->getOutputFromHtml($html);
 
         return array($content, $filename, 'application/pdf');
     }

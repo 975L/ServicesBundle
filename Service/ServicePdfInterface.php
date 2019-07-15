@@ -23,6 +23,12 @@ interface ServicePdfInterface
     public function getPdfFile(string $filename, string $url);
 
     /**
+     * Returns an array($filepath, $filename, 'application/pdf') for a pdf file
+     * @return array
+     */
+    public function getPdfFilePath(string $filename, string $url);
+
+    /**
      * Converts html code to pdf and returns an array($content, $filename, 'application/pdf') of the converted pdf file
      * @return array
      */

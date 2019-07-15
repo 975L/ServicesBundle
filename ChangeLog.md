@@ -1,5 +1,9 @@
 # Changelog
 
+v1.2.9
+------
+- Added `getPdfFilePath()` to return the url instead of the content (15/07/2019)
+
 v1.2.8
 ------
 - Added Twig function to check if a Route exists (14/07/2019)
