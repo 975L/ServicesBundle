@@ -18,8 +18,8 @@ cd $SiteFolder;
 unset GIT_DIR;
 
 echo "------> Pull changes from master";
-git pull origin master;
-
+git fetch --all;
+git reset --hard origin/master;
 
 if [[ $PhpVersion != '' ]]; then
     echo "------> Composer installation";

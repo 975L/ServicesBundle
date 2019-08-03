@@ -1,5 +1,9 @@
 # Changelog
 
+v1.3
+----
+- Made use of `git reset --hard origin/master` to force overwrite of local changes (03/08/2019)
+
 v1.2.9
 ------
 - Added `getPdfFilePath()` to return the url instead of the content (15/07/2019)
