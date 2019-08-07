@@ -65,11 +65,11 @@ class YourClass
 ```
 
 `.sh` scripts
--------------
+=============
 These scripts are not directly related to Symfony but to its production steps for `GitHookPostUpdate.sh` and its backup `BackupXXX.sh`. **They are programmed to work on the Synfony 4(flex) structure AND on a GNU/Linux server. You can find more information on them below.
 
 GitHookPostUpdate.sh
-====================
+--------------------
 This script is to be run after the Git repository has been updated (via `git pull`), for this, it's call should be placed in the `.git/hooks/post-update` file with the following code:
 ```bash
 #!/bin/bash
@@ -79,8 +79,17 @@ source $Folder/../../PATH_TO_ROOT_FOLDER/vendor/c975l/services-bundle/Scripts/Gi
 exit 0
 ```
 
+ImportSqlFile.sh
+----------------
+This script is useful if you store some SQL queries in a file to allow bulk import directly to MySql server. The script will rename the imported file (must be "/var/tmp/sqlFile.sql") before processing, to avoid collisions, and will rename it, after, with date and time. You can then simply add a new cron with the following code:
+```bash
+MAILTO=YOUR_EMAIL_ADDRESS
+*/20    *       *       *       *       bash ~/run.as/httpdocs/vendor/c975l/services-bundle/Scripts/ImportSqlFile.sh 1> /dev/null
+```
+It will also delete files older than 7 days. It uses the data define in `/config/backup_config.cnf`, see below.
+
 BackupXXX.sh
-============
+------------
 These scripts helps for the backup of a website, they are detailed below. The backup files are stored in `/var/backup/{year}/[year-month]/{year-month-day}`. The files are named using the following scheme: "[MYSQL|WEBSITE]_-_NAME_-_YYYY-MM-DD_-_HH-II_-_[WithoutArchives|Archives|Complete|Partial].tar.bz2".
 
 You can include them in a crontab like in the following to execute each hour between 06 and 22 at the 15 minute:
@@ -105,19 +114,48 @@ hour=HOUR_FOR_COMPLETE_BACKUP This hour has to be one of which the cron will be 
 ```
 
 BackupServer.sh
-===============
+---------------
 This script groups calls for `BackupMysql.sh` and `BackupFiles.sh` to allow only one crontab but they can be called individually.
 
 BackupMysql.sh
-==============
+--------------
 This script makes a backup of the tables in MySql server. All the tables are mysqldumped (one by one, to allow restore table by table) at each run, except those named with `_archives` which occurs once a day at the hour specified in `/config/backup_config.cnf`. There is also a mysqldump of the whole database, at the same hour specified as for `*_archives`, to allow a restore with only one file. The format used for the naming is "NAME_-_TABLE.sql".
 
 BackupFolders.sh
-================
+----------------
 This script makes a backup of the `public` folder. There is a complete backup once a week and a partial backup (only new and newer files) other times.
+
 
 Twig Extension
 ==============
 Using the provided Twig extension `RouteExists` you can check via `{% if route_exists('YOUR_ROUTE_TO_CHECK') %}` if the Route is available.
+
+Lists
+=====
+You can use the provided lists:
+- extensions
+- bots
+to check against. They can be called by the following code (requires [c975L/ConfigBundle](https://github.com/975L/ConfigBUndle)):
+```php
+use c975L\ConfigBundle\Service\ConfigServiceInterface;
+
+class YourClass
+{
+    private $configService;
+
+    public function __construct(ConfigServiceInterface $configService)
+    {
+        $this->configService = $configService;
+    }
+
+    public function yourMethod()
+    {
+        $extensions = file($this->configService->getContainerParameter('kernel.root_dir') . '/../vendor/c975l/services-bundle/Lists/extensions.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if (in_array('txt', $extensions)) {
+            //Do your stuff
+        }
+    }
+}
+```
 
 **If this project help you to reduce time to develop, you can [buy me a coffee](https://www.buymeacoffee.com/LaurentMarquet) :)**
