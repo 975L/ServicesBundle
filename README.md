@@ -126,9 +126,11 @@ BackupFolders.sh
 This script makes a backup of the `public` folder. There is a complete backup once a week and a partial backup (only new and newer files) other times.
 
 
-Twig Extension
-==============
+Twig Extensions
+===============
 Using the provided Twig extension `RouteExists` you can check via `{% if route_exists('YOUR_ROUTE_TO_CHECK') %}` if the Route is available.
+
+Using the provided Twig extension `TemplateExists` you can check via `{% if template_exists('YOUR_TEMPLATE_TO_CHECK') %}` if the template is available.
 
 Lists
 =====

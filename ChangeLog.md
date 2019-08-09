@@ -1,5 +1,10 @@
 # Changelog
 
+v1.5
+----
+- Added Twig Extension TemplateExists (09/08/2019)
+- Added dependency for c975L/ConfigBundle (09/08/2019)
+
 v1.4
 ----
 - Added script to import SQL file to server (07/08/2019)
