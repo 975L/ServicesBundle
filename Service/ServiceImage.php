@@ -63,7 +63,7 @@ class ServiceImage implements ServiceImageInterface
     /**
      * {@inheritdoc}
      */
-    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75)
+    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75, bool $square = false, $stamp = null)
     {
         if (null !== $file) {
             //Defines data
@@ -82,7 +82,10 @@ class ServiceImage implements ServiceImageInterface
                     //Defines data
                     $width = $fileData[0];
                     $height = $fileData[1];
-                    $compression = 'png' == $format && $compression > 9 ? 6 : $compression;
+                    $compression = 'png' === $format && $compression > 9 ? 6 : $compression;
+                    $stampMargin = 10;
+                    $stampHeight = 50;
+                    $stampWidth = 50;
 
                     //Resizes image
                     $newHeight = $finalHeight;
@@ -119,25 +122,50 @@ class ServiceImage implements ServiceImageInterface
 
                     //Resizes
                     if (isset($fileSource)) {
+                        $cropX = 0;
+                        $cropY = 0;
+
+                        //Crop as square
+                        if ($square) {
+                            $newHeight = $finalHeight;
+                            $newWidth = $finalHeight;
+                            if ($width > $height) {
+                                $cropX = ceil(($width - $height) / 2);
+                                $cropY = 0;
+                                $width = $height;
+                            } else {
+                                $cropX = 0;
+                                $cropY = ceil(($height - $width) / 2);
+                                $height = $width;
+                            }
+                        }
+
+                        //Creates picture
                         $newPicture = imagecreatetruecolor($newWidth, $newHeight);
                         //JPG format (output) white background
-                        if ('jpg' == $format) {
+                        if ('jpg' === $format) {
                             $whiteBackground = imagecolorallocate($newPicture, 255, 255, 255);
                             imagefill($newPicture, 0, 0, $whiteBackground);
                         }
 
                         //Rotates
-                        if ($degree == 90 || $degree == 270) {
-                            imagecopyresampled($newPicture, $fileSource, 0, 0, 0, 0, $newWidth, $newHeight, $height, $width);
+                        if (90 === $degree || 270 === $degree) {
+                            imagecopyresampled($newPicture, $fileSource, 0, 0, $cropX, $cropY, $newWidth, $newHeight, $height, $width);
                         } else {
-                            imagecopyresampled($newPicture, $fileSource, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                            imagecopyresampled($newPicture, $fileSource, 0, 0, $cropY, $cropX, $newWidth, $newHeight, $width, $height);
+                        }
+
+                        //Adds Stamp in bottom right
+                        if (null !== $stamp) {
+                            $stampImage = imagecreatefrompng($stamp);
+                            imagecopy($newPicture, $stampImage, ($newWidth - $stampWidth - $stampMargin), ($newHeight - $stampHeight - $stampMargin), 0, 0, $stampWidth, $stampHeight);
                         }
 
                         //Saves the picture JPG
-                        if ('jpg' == $format) {
+                        if ('jpg' === $format) {
                             imagejpeg($newPicture, $tempFilename, $compression);
                         //Saves the picture PNG
-                        } elseif ('png' == $format) {
+                        } elseif ('png' === $format) {
                             imagepng($newPicture, $tempFilename, $compression);
                         }
 

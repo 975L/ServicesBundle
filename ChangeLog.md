@@ -1,5 +1,10 @@
 # Changelog
 
+v1.6
+----
+- Added posiibility to resize image in square format (11/08/2019)
+- Added possibility to add a stamp in the image resized (11/08/2019)
+
 v1.5
 ----
 - Added Twig Extension TemplateExists (09/08/2019)

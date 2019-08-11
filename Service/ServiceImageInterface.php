@@ -31,5 +31,5 @@ interface ServiceImageInterface
      * Resizes image
      * @return bool
      */
-    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75);
+    public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75, bool $square = false, $stamp = null);
 }
