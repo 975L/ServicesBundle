@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.2
+------
+- Added possibility to rotate image (12/08/2019)
+
 v1.6.1
 ------
 - Updated README.md (12/08/2019)

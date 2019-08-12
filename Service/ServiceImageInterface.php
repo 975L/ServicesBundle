@@ -32,4 +32,10 @@ interface ServiceImageInterface
      * @return bool
      */
     public function resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75, bool $square = false, $stamp = null);
+
+    /**
+     * Rotates the image
+     */
+    public function rotate($file, $degree);
+
 }

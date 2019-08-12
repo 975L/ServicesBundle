@@ -181,4 +181,57 @@ class ServiceImage implements ServiceImageInterface
 
         return false;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rotate($file, $degree, int $compression = 75)
+    {
+        $format = strtolower(substr($file, strrpos($file, '.') + 1, 3));
+        if (in_array($format, array('jpeg', 'jpg', 'png'))) {
+            $fileData = getimagesize($file);
+
+            //Creates the final picture
+            if (is_array($fileData)) {
+                //Defines data
+                $compression = 'png' === $format && $compression > 9 ? 6 : $compression;
+                $width = $fileData[0];
+                $height = $fileData[1];
+
+                //JPEG format
+                if (2 === $fileData[2]) {
+                    $fileSource = imagecreatefromjpeg($file);
+                //PNG format
+                } elseif (3 === $fileData[2]) {
+                    $fileSource = imagecreatefrompng($file);
+                }
+
+                //Rotates
+                $newWidth = $height;
+                $newHeight = $width;
+                $fileSource = imagerotate($fileSource, $degree, 0);
+                $newPicture = imagecreatetruecolor($newWidth, $newHeight);
+                if ('jpg' === $format) {
+                    $whiteBackground = imagecolorallocate($newPicture, 255, 255, 255);
+                    imagefill($newPicture, 0, 0, $whiteBackground);
+                }
+                imagecopyresampled($newPicture, $fileSource, 0, 0, 0, 0, $newWidth, $newHeight, $height, $width);
+
+                //Saves the picture - JPEG format
+                if ('jpg' === $format) {
+                    imagejpeg($newPicture, $file, $compression);
+                //Saves the picture - PNG format
+                } elseif ('png' === $format) {
+                    imagepng($newPicture, $file, $compression);
+                }
+
+                //Destroy picture
+                imagedestroy($newPicture);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
