@@ -40,11 +40,11 @@ class AppKernel extends Kernel
 ```
 
 How to use
-----------
+==========
 Call the needed service via its interface and use its methods.
 
-Example resize image
---------------------
+Resize image
+------------
 If you want to resize an image, you can do the following:
 
 ```php
@@ -59,7 +59,28 @@ class YourClass
         //Do your stuff...
 
         //Resizes image
-        $imageService->resize($imageFile, $folder, $filename, $format, $finalHeight, $compression);
+        $imageService->resize($file, string $folder, string $filename, string $format = 'jpg', int $finalHeight = 400, int $compression = 75, bool $square = false, $stamp = null);
+    }
+}
+```
+
+Create Flash message
+--------------------
+If you want to create a flash message, you can do the following:
+
+```php
+use c975L\ServicesBundle\Service\ServiceToolsInterface;
+
+class YourClass
+{
+    private $toolsService;
+
+    public yourMethod(ServiceToolsInterface $toolsService)
+    {
+        //Do your stuff...
+
+        //Create flash
+        $toolsService->createFlash(string $translationDomain = null, string $text, string $style = 'success', array $options = array());
     }
 }
 ```

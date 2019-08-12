@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.1
+------
+- Updated README.md (12/08/2019)
+
 v1.6
 ----
 - Added posiibility to resize image in square format (11/08/2019)
