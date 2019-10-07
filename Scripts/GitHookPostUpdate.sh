@@ -24,8 +24,8 @@ git reset --hard origin/master;
 if [[ $PhpVersion != '' ]]; then
     echo "------> Composer installation";
     export SYMFONY_ENV=prod;
-    $PhpVersion -d allow_url_fopen=On -d memory_limit=2G ~/composer.phar install --no-dev;
-    $PhpVersion -d allow_url_fopen=On -d memory_limit=2G ~/composer.phar dump-autoload --optimize --no-dev --classmap-authoritative;
+    $PhpVersion -d allow_url_fopen=On -d memory_limit=2G ~/composer.phar dump-env prod;
+    $PhpVersion -d allow_url_fopen=On -d memory_limit=2G ~/composer.phar install --no-dev --optimize-autoloader;
 
     echo "------> Clear Doctrine cache";
     $PhpVersion bin/console doctrine:cache:clear-metadata --env=prod;

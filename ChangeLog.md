@@ -1,5 +1,9 @@
 # Changelog
 
+v1.6.3
+------
+- Modified GitHookPostUpdate.sh to add dump-env and made use of --optimize-autoloader (07/10/2019)
+
 v1.6.2
 ------
 - Added possibility to rotate image (12/08/2019)
