@@ -1,5 +1,9 @@
 # Changelog
 
+v1.7
+----
+- Added possibility to specify an exclude file for BackupFolders.sh (24/02/2020)
+
 v1.6.3
 ------
 - Modified GitHookPostUpdate.sh to add dump-env and made use of --optimize-autoloader (07/10/2019)

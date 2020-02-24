@@ -145,7 +145,7 @@ This script makes a backup of the tables in MySql server. All the tables are mys
 BackupFolders.sh
 ----------------
 This script makes a backup of the `public` folder. There is a complete backup once a week and a partial backup (only new and newer files) other times.
-
+You can specify a list of patterns to exclude, separated with lines break, in a file named `/config/backup_exclude.cnf` i.e `*/folder_to_exclude`.
 
 Twig Extensions
 ===============

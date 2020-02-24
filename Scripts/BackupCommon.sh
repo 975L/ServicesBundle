@@ -21,6 +21,7 @@ export BackupFileDateTime=`date +"%Y%m%d%H%M"`;
 Folder="$( cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P )";
 export SiteFolder="$Folder/../../../..";
 export BackupFolder=$SiteFolder/var/backup;
+export BackupExcludeFile=$SiteFolder/config/backup_exclude.cnf;
 export BackupFinalFolder=$BackupFolder/$YearDate/$MonthDate/$DayDate;
 mkdir --parents $BackupFinalFolder;
 

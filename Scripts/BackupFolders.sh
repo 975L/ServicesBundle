@@ -22,10 +22,19 @@ echo $'\n''Folders and Files backup for "'$SiteName'": '`date +"%F %T"` >> $tmpE
 #Complete backup
 if [[ ! -f $BackupDateTimeFile ]] || ([[ $WeekDayNumber == $DayCompleteBackupWebsite ]] && [[ $HourNumber == $HourCompleteBackupWebsite ]]); then
     echo 'COMPLETE Folders backup' >> $tmpEmailFile;
-    nice tar \
-        --bzip2 \
-        --create \
-        --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Complete.tar.bz2" $SiteFolder/public/*;
+    #Uses exclude file if present
+    if [[ -f $BackupExcludeFile ]]; then
+        nice tar \
+            --exclude-from=$SiteFolder/config/backup_exclude.cnf \
+            --bzip2 \
+            --create \
+            --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Complete.tar.bz2" $SiteFolder/public/*;
+    else
+        nice tar \
+            --bzip2 \
+            --create \
+            --file "WEBSITE_-_"$SiteName"_-_"$DayDateTime"_-_Complete.tar.bz2" $SiteFolder/public/*;
+    fi
 #Partial backup
 else
     #Copies the list of modified files in a text file
