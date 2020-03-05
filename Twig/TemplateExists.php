@@ -35,7 +35,7 @@ class TemplateExists extends AbstractExtension
      */
     public function templateExists($template)
     {
-        $templatesFolder = '4' === substr(Kernel::VERSION, 0, 1) ? '/../templates/' : '/app/Resources/views/';
+        $templatesFolder = '3' === substr(Kernel::VERSION, 0, 1) ? '/app/Resources/views/' : '/../templates/';
         $templatesFolder = $this->configService->getContainerParameter('kernel.root_dir') . $templatesFolder;
 
         return is_file($templatesFolder . $template);

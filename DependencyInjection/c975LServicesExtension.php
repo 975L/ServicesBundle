@@ -21,6 +21,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class c975LServicesExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
@@ -28,8 +31,5 @@ class c975LServicesExtension extends Extension
             new FileLocator(__DIR__.'/../Resources/config')
         );
         $loader->load('services.yml');
-
-        $configuration = new Configuration();
-        $processedConfig = $this->processConfiguration($configuration, $configs);
     }
 }

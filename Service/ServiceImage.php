@@ -53,11 +53,7 @@ class ServiceImage implements ServiceImageInterface
             $folder .= '/';
         }
 
-        if (substr(Kernel::VERSION, 0, 1) == 4) {
-            return $rootDir . '/../public/images/' . $folder;
-        }
-
-        return $rootDir . '/../web/images/' . $folder;
+        return '3' === substr(Kernel::VERSION, 0, 1) ? $rootDir . '/../web/images/' . $folder : $rootDir . '/../public/images/' . $folder;
     }
 
     /**
