@@ -179,7 +179,7 @@ class YourClass
 
     public function yourMethod()
     {
-        $extensions = file($this->configService->getContainerParameter('kernel.root_dir') . '/../vendor/c975l/services-bundle/Lists/extensions.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $extensions = file($this->configService->getContainerParameter('kernel.project_dir') . '/../vendor/c975l/services-bundle/Lists/extensions.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         if (in_array('txt', $extensions)) {
             //Do your stuff
         }

@@ -48,7 +48,7 @@ class ServiceImage implements ServiceImageInterface
      */
     public function getFolder(string $folder)
     {
-        $rootDir = $this->container->getParameter('kernel.root_dir');
+        $rootDir = $this->container->getParameter('kernel.project_dir');
         if (false === strrpos($folder, '/')) {
             $folder .= '/';
         }
