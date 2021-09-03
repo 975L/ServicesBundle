@@ -9,8 +9,11 @@
 
 namespace c975L\ServicesBundle\Service;
 
-use Knp\Snappy\Pdf;
-use Symfony\Component\Translation\TranslatorInterface;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Spipu\Html2Pdf\Html2Pdf;
+use Mpdf\Mpdf;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Services related to ServicePdfInterface
@@ -19,12 +22,6 @@ use Symfony\Component\Translation\TranslatorInterface;
  */
 class ServicePdf implements ServicePdfInterface
 {
-    /**
-     * Stores knpSnappyPdf
-     * @var Pdf
-     */
-    private $knpSnappyPdf;
-
     /**
      * Stores ServiceToolsInterface
      * @var ServiceToolsInterface
@@ -38,12 +35,10 @@ class ServicePdf implements ServicePdfInterface
     private $translator;
 
     public function __construct(
-        Pdf $knpSnappyPdf,
         ServiceToolsInterface $serviceTools,
         TranslatorInterface $translator
     )
     {
-        $this->knpSnappyPdf = $knpSnappyPdf;
         $this->serviceTools = $serviceTools;
         $this->translator = $translator;
     }
@@ -75,8 +70,46 @@ class ServicePdf implements ServicePdfInterface
      */
     public function html2Pdf(string $filename, string $html)
     {
-        $content = $this->knpSnappyPdf->getOutputFromHtml($html);
+echo $html;
+/*        $options = new Options();
+        $options->setDpi(150);
 
-        return array($content, $filename, 'application/pdf');
+        $dompdf = new Dompdf($options);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+
+        $dompdf->render();*/
+
+// In this case, we want to write the file in the public directory
+$publicDirectory = __DIR__.'/../../../../cotemassages.com/public';
+// e.g /var/www/project/public/mypdf.pdf
+$pdfFilepath =  $publicDirectory . '/mypdf.pdf';
+
+// Write file to the desired path
+//file_put_contents($pdfFilepath, $dompdf->output());
+
+
+//$mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
+$mpdf = new Mpdf([]);
+dump($mpdf);
+dump('here');die;
+$mpdf->WriteHTML($html);
+$mpdf->Output($pdfFilepath);
+
+/*$html2pdf = new Html2Pdf();
+$html2pdf->writeHTML($html);
+$html2pdf->output($pdfFilepath);*/
+
+
+
+
+dump('here');die;
+
+
+
+
+
+
+        return array($dompdf->output(), $filename, 'application/pdf');
     }
 }

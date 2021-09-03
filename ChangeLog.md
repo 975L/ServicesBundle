@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9
+
+- Changed `Symfony\Component\Translation\TranslatorInterface` to `Symfony\Contracts\Translation\TranslatorInterface` (03/09/2021)
+
 ## v1.8.1
 
 - Removed twig/extensions (03/09/2021)
