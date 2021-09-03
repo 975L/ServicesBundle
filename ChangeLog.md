@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8
+
+- Removed versions constraints in composer (03/09/2021)
+
 ## v1.7.1
 
 - Cosmetic changes due to Codacy review (05/03/2020)
