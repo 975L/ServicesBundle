@@ -1,8 +1,13 @@
 # Changelog
 
+## v1.9.2
+
+- Corrected `ServiceUser` to check wether token is NOT null (20/09/2021)
+
 ## v1.9.1
 
 - Replaced `kernel.root_dir` by `kernel.project_dir` (03/09/2021)
+
 ## v1.9
 
 - Changed `Symfony\Component\Translation\TranslatorInterface` to `Symfony\Contracts\Translation\TranslatorInterface` (03/09/2021)

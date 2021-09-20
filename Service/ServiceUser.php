@@ -69,6 +69,6 @@ class ServiceUser implements ServiceUserInterface
      */
     public function getUser()
     {
-        return $this->tokenStorage->getToken()->getUser();
+        return null !== $this->tokenStorage->getToken() ? $this->tokenStorage->getToken()->getUser() : null;
     }
 }
