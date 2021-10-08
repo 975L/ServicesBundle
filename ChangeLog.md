@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9.3
+
+- Corrected folder path for SF > 3 (08/10/2021)
+
 ## v1.9.2
 
 - Corrected `ServiceUser` to check wether token is NOT null (20/09/2021)
