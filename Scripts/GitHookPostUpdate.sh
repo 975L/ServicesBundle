@@ -17,9 +17,9 @@ SiteName=$SiteFolder | cut -d'/' -f 5;
 cd $SiteFolder;
 unset GIT_DIR;
 
-echo "------> Pull changes from master";
+echo "------> Pull changes from main";
 git fetch --all;
-git reset --hard origin/master;
+git reset --hard origin/main;
 
 if [[ $PhpVersion != '' ]]; then
     echo "------> Composer installation";

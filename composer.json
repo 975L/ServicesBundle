@@ -19,13 +19,15 @@
     ],
     "require": {
         "php": "*",
-        "c975l/config-bundle": "^2",
+        "c975l/config-bundle": "*",
         "cocur/slugify": "*",
         "doctrine/orm": "*",
         "dompdf/dompdf": "*",
         "symfony/routing": "*",
         "symfony/security": "*",
         "symfony/translation": "*"
+    },
+    "require-dev": {
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -41,9 +43,5 @@
         "email": "contact@975l.com",
         "source": "https://github.com/975L/ServicesBundle",
         "issues": "https://github.com/975L/ServicesBundle/issues"
-    },
-    "require-dev": {
-        "rector/rector": "^0",
-        "symplify/easy-coding-standard": "^5"
     }
 }

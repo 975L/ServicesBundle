@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.0
+
+- Changed compatibility to Symfony 6 (24/07/2022)
+- Corrected script to use branch main instead of master (24/07/2022)
+
 ## v1.9.3
 
 - Corrected folder path for SF > 3 (08/10/2021)
