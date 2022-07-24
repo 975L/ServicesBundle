@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1
+
+- Corrected security-bundle (24/07/2022)
+
 ## v2.0
 
 - Changed compatibility to Symfony 6 (24/07/2022)

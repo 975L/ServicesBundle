@@ -24,7 +24,7 @@
         "doctrine/orm": "*",
         "dompdf/dompdf": "*",
         "symfony/routing": "*",
-        "symfony/security": "*",
+        "symfony/security-bundle": "*",
         "symfony/translation": "*"
     },
     "require-dev": {
