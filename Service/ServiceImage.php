@@ -9,7 +9,6 @@
 
 namespace c975L\ServicesBundle\Service;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -20,17 +19,6 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class ServiceImage implements ServiceImageInterface
 {
-    /**
-     * Stores Container
-     * @var ContainerInterface
-     */
-    private $container;
-
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
     /**
      * {@inheritdoc}
      */
