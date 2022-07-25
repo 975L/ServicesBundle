@@ -16,18 +16,13 @@ use Twig\TwigFunction;
 
 class TemplateExists extends AbstractExtension
 {
-    private $configService;
-
-    public function __construct(ConfigServiceInterface $configService)
+    public function __construct(private readonly ConfigServiceInterface $configService)
     {
-        $this->configService = $configService;
     }
 
     public function getFunctions()
     {
-        return array(
-            new TwigFunction('template_exists', array($this, 'templateExists')),
-        );
+        return [new TwigFunction('template_exists', $this->templateExists(...))];
     }
 
     /**
@@ -36,7 +31,7 @@ class TemplateExists extends AbstractExtension
     public function templateExists($template)
     {
         $root = $this->configService->getContainerParameter('kernel.project_dir');
-        $templatesFolder = '3' === substr(Kernel::VERSION, 0, 1) ? $root . '/app/Resources/views/' : $root . '/templates/';
+        $templatesFolder = str_starts_with(Kernel::VERSION, '3') ? $root . '/app/Resources/views/' : $root . '/templates/';
 
         return is_file($templatesFolder . $template);
     }

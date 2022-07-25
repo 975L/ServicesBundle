@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.0
+
+- Corrected use of container (25/07/2022)
+- Changed compatibility to PHP 8 (25/07/2022)
+
 ## v2.0.2
 
 - Suppressed use of container (24/07/2022)

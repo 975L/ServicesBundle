@@ -22,25 +22,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ServicePdf implements ServicePdfInterface
 {
-    /**
-     * Stores ServiceToolsInterface
-     * @var ServiceToolsInterface
-     */
-    private $serviceTools;
-
-    /**
-     * Stores TranslatorInterface
-     * @var TranslatorInterface
-     */
-    private $translator;
-
     public function __construct(
-        ServiceToolsInterface $serviceTools,
-        TranslatorInterface $translator
+        /**
+         * Stores ServiceToolsInterface
+         */
+        private readonly ServiceToolsInterface $serviceTools,
+        /**
+         * Stores TranslatorInterface
+         */
+        private readonly TranslatorInterface $translator
     )
     {
-        $this->serviceTools = $serviceTools;
-        $this->translator = $translator;
     }
 
     /**
@@ -49,9 +41,9 @@ class ServicePdf implements ServicePdfInterface
     public function getPdfFile(string $filename, string $url)
     {
         $content = file_get_contents($this->serviceTools->getUrl($url));
-        $filename = $this->translator->trans($filename, array(), 'services') . '.pdf';
+        $filename = $this->translator->trans($filename, [], 'services') . '.pdf';
 
-        return array($content, $filename, 'application/pdf');
+        return [$content, $filename, 'application/pdf'];
     }
 
     /**
@@ -60,9 +52,9 @@ class ServicePdf implements ServicePdfInterface
     public function getPdfFilePath(string $filename, string $url)
     {
         $filePath = $this->serviceTools->getUrl($url);
-        $filename = $this->translator->trans($filename, array(), 'services') . '.pdf';
+        $filename = $this->translator->trans($filename, [], 'services') . '.pdf';
 
-        return array($filePath, $filename, 'application/pdf');
+        return [$filePath, $filename, 'application/pdf'];
     }
 
     /**
@@ -70,6 +62,7 @@ class ServicePdf implements ServicePdfInterface
      */
     public function html2Pdf(string $filename, string $html)
     {
+$dompdf = null;
 echo $html;
 /*        $options = new Options();
         $options->setDpi(150);
@@ -110,6 +103,6 @@ dump('here');die;
 
 
 
-        return array($dompdf->output(), $filename, 'application/pdf');
+        return [$dompdf->output(), $filename, 'application/pdf'];
     }
 }

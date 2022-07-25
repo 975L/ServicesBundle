@@ -20,25 +20,17 @@ use Symfony\Component\Routing\RouterInterface;
  */
 class ServiceSlug implements ServiceSlugInterface
 {
-    /**
-     * Stores EntityManager
-     * @var EntityManagerInterface
-     */
-    private $em;
-
-    /**
-     * Stores Router
-     * @var RouterInterface
-     */
-    private $router;
-
     public function __construct(
-        EntityManagerInterface $em,
-        RouterInterface $router
+        /**
+         * Stores EntityManager
+         */
+        private readonly EntityManagerInterface $em,
+        /**
+         * Stores Router
+         */
+        private readonly RouterInterface $router
     )
     {
-        $this->em = $em;
-        $this->router = $router;
     }
 
     /**
@@ -67,10 +59,7 @@ class ServiceSlug implements ServiceSlugInterface
     {
         if ($slug !== $object->getSlug()) {
             return
-                $this->router->generate($route, array(
-                    'slug' => $object->getSlug(),
-                    'id' => $object->getId(),
-            ));
+                $this->router->generate($route, ['slug' => $object->getSlug(), 'id' => $object->getId()]);
         }
 
         return null;

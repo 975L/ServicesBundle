@@ -15,22 +15,18 @@ use Twig\TwigFunction;
 
 class RouteExists extends AbstractExtension
 {
-    /**
-     * Stores Router
-     * @var RouterInterface
-     */
-    private $router;
-
-    public function __construct(RouterInterface $router)
+    public function __construct(
+        /**
+         * Stores Router
+         */
+        private readonly RouterInterface $router
+    )
     {
-        $this->router = $router;
     }
 
     public function getFunctions()
     {
-        return array(
-            new TwigFunction('route_exists', array($this, 'routeExists')),
-        );
+        return [new TwigFunction('route_exists', $this->routeExists(...))];
     }
 
     public function routeExists($route)

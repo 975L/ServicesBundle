@@ -10,6 +10,7 @@
 namespace c975L\ServicesBundle\Service;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
@@ -19,6 +20,15 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class ServiceImage implements ServiceImageInterface
 {
+    public function __construct(
+        /**
+         * Stores ParameterBagInterface
+         */
+        private readonly ParameterBagInterface $params,
+    )
+    {
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,12 +46,12 @@ class ServiceImage implements ServiceImageInterface
      */
     public function getFolder(string $folder)
     {
-        $rootDir = $this->container->getParameter('kernel.project_dir');
+        $rootDir = $this->params->get('kernel.project_dir');
         if (false === strrpos($folder, '/')) {
             $folder .= '/';
         }
 
-        return '3' === substr(Kernel::VERSION, 0, 1) ? $rootDir . '/../web/images/' . $folder : $rootDir . '/public/images/' . $folder;
+        return str_starts_with(Kernel::VERSION, '3') ? $rootDir . '/../web/images/' . $folder : $rootDir . '/public/images/' . $folder;
     }
 
     /**
@@ -51,10 +61,10 @@ class ServiceImage implements ServiceImageInterface
     {
         if (null !== $file) {
             //Defines data
-            $extension = is_object($file) ? strtolower($file->guessExtension()) : substr($file, strrpos($file, '.') + 1, 3);
+            $extension = is_object($file) ? strtolower((string) $file->guessExtension()) : substr((string) $file, strrpos((string) $file, '.') + 1, 3);
 
             //Checks if extension and format are supported
-            if (in_array($format, array('jpg', 'png')) && in_array($extension, array('jpeg', 'jpg', 'png'))) {
+            if (in_array($format, ['jpg', 'png']) && in_array($extension, ['jpeg', 'jpg', 'png'])) {
                 $fileData = getimagesize($file);
                 //Also used to reduces poster issued from video
                 $tempFilename = is_object($file) ? $file->getRealPath() : $file;
@@ -155,7 +165,7 @@ class ServiceImage implements ServiceImageInterface
 
                         //Saves the file in the right place
                         imagedestroy($newPicture);
-                        $file->move($folder, str_replace(array('.jpg', '.jpeg', '.png'), '.' . $format, $filename));
+                        $file->move($folder, str_replace(['.jpg', '.jpeg', '.png'], '.' . $format, $filename));
 
                         return true;
                     }
@@ -171,8 +181,9 @@ class ServiceImage implements ServiceImageInterface
      */
     public function rotate($file, $degree, int $compression = 75)
     {
-        $format = strtolower(substr($file, strrpos($file, '.') + 1, 3));
-        if (in_array($format, array('jpeg', 'jpg', 'png'))) {
+        $fileSource = null;
+        $format = strtolower(substr((string) $file, strrpos((string) $file, '.') + 1, 3));
+        if (in_array($format, ['jpeg', 'jpg', 'png'])) {
             $fileData = getimagesize($file);
 
             //Creates the final picture

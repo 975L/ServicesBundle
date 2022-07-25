@@ -18,15 +18,13 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class ServiceUser implements ServiceUserInterface
 {
-    /**
-     * Stores TokenStorageInterface
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(
+        /**
+         * Stores TokenStorageInterface
+         */
+        private readonly TokenStorageInterface $tokenStorage
+    )
     {
-        $this->tokenStorage = $tokenStorage;
     }
 
     /**

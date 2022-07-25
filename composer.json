@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php": "*",
+        "php": "^8",
         "c975l/config-bundle": "*",
         "cocur/slugify": "*",
         "doctrine/orm": "*",

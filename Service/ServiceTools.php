@@ -24,37 +24,28 @@ class ServiceTools implements ServiceToolsInterface
 {
     /**
      * Stores current Request
-     * @var Request
      */
-    private $request;
-
-    /**
-     * Stores Router
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
-     * Stores Translator
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private readonly ?\Symfony\Component\HttpFoundation\Request $request;
 
     public function __construct(
         RequestStack $requestStack,
-        TranslatorInterface $translator,
-        RouterInterface $router
+        /**
+         * Stores Translator
+         */
+        private readonly TranslatorInterface $translator,
+        /**
+         * Stores Router
+         */
+        private readonly RouterInterface $router
     )
     {
         $this->request = $requestStack->getCurrentRequest();
-        $this->translator = $translator;
-        $this->router = $router;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function createFlash(string $translationDomain = null, string $text, string $style = 'success', array $options = array())
+    public function createFlash(string $text, string $translationDomain = null, string $style = 'success', array $options = [])
     {
         if (null !== $this->request) {
             if (null !== $translationDomain) {
@@ -77,11 +68,11 @@ class ServiceTools implements ServiceToolsInterface
         $url = null;
 
         //Calculates the url if a Route is provided
-        if (false !== strpos($data, ',')) {
+        if (str_contains($data, ',')) {
             $routeData = $this->getUrlFromRoute($data);
             $url = $this->router->generate($routeData['route'], $routeData['params'], UrlGeneratorInterface::ABSOLUTE_URL);
         //An url has been provided
-        } elseif (false !== strpos($data, 'http')) {
+        } elseif (str_contains($data, 'http')) {
             $url = $data;
         }
 
@@ -98,17 +89,14 @@ class ServiceTools implements ServiceToolsInterface
 
         //Gets parameters
         $params = trim(substr($route, strpos($route, '{')), "{}");
-        $params = str_replace(array('"', "'"), '', $params);
+        $params = str_replace(['"', "'"], '', $params);
         $params = explode(',', $params);
-        $paramsArray = array();
+        $paramsArray = [];
         foreach($params as $value) {
             $parameter = explode(':', $value);
             $paramsArray[trim($parameter[0])] = trim($parameter[1]);
         }
 
-        return array(
-            'route' => $routeValue,
-            'params' => $paramsArray
-        );
+        return ['route' => $routeValue, 'params' => $paramsArray];
     }
 }
