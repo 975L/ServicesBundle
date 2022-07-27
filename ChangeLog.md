@@ -1,8 +1,12 @@
 # Changelog
 
+## v3.0.2
+
+- Corrected call of composer2 install (27/07/2022)
+
 ## v3.0.1
 
-- Modified call of composer (27/07/2022)
+- Modified call of composer2 install (27/07/2022)
 
 ## v3.0
 
