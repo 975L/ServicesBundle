@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.1
+
+- Modified call of composer (27/07/2022)
+
 ## v3.0
 
 - Corrected use of container (25/07/2022)
