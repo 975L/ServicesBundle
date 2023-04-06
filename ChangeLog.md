@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.0.3
+
+- Added missing return type (06/04/2023)
+
 ## v3.0.2
 
 - Corrected call of composer2 install (27/07/2022)
