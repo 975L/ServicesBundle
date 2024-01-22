@@ -62,17 +62,8 @@ class ServicePdf implements ServicePdfInterface
      */
     public function html2Pdf(string $filename, string $html)
     {
-$dompdf = null;
-echo $html;
-/*        $options = new Options();
-        $options->setDpi(150);
-
-        $dompdf = new Dompdf($options);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-
-        $dompdf->render();*/
-
+        /*
+        TO BE DONE one day...
 // In this case, we want to write the file in the public directory
 $publicDirectory = __DIR__.'/../../../../cotemassages.com/public';
 // e.g /var/www/project/public/mypdf.pdf
@@ -81,7 +72,6 @@ $pdfFilepath =  $publicDirectory . '/mypdf.pdf';
 // Write file to the desired path
 //file_put_contents($pdfFilepath, $dompdf->output());
 
-
 //$mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
 $mpdf = new Mpdf([]);
 dump($mpdf);
@@ -89,20 +79,13 @@ dump('here');die;
 $mpdf->WriteHTML($html);
 $mpdf->Output($pdfFilepath);
 
-/*$html2pdf = new Html2Pdf();
+$html2pdf = new Html2Pdf();
 $html2pdf->writeHTML($html);
-$html2pdf->output($pdfFilepath);*/
-
-
-
+$html2pdf->output($pdfFilepath);
 
 dump('here');die;
 
-
-
-
-
-
         return [$dompdf->output(), $filename, 'application/pdf'];
+*/
     }
 }

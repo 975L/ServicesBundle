@@ -4,7 +4,7 @@ services:
         autoconfigure: true
 
     c975L\ServicesBundle\Service\:
-        resource: '../../Service/*'
+        resource: '../src/Service/*'
 
     c975L\ServicesBundle\Twig\:
-        resource: '../../Twig/*'
+        resource: '../src/Twig/*'

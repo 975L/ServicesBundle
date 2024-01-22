@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.0
+
+- Changed to new recomended bundle SF 7 structure (15/01/2024)
+
+Upgrading from v3.x? **Check UPGRADE.md**
+
 ## v3.0.4
 
 - Added TreeBuilder return type (29/05/2023)
@@ -21,6 +27,8 @@
 - Corrected use of container (25/07/2022)
 - Changed compatibility to PHP 8 (25/07/2022)
 
+Upgrading from v2.x? **Check UPGRADE.md**
+
 ## v2.0.2
 
 - Suppressed use of container (24/07/2022)
@@ -33,6 +41,8 @@
 
 - Changed compatibility to Symfony 6 (24/07/2022)
 - Corrected script to use branch main instead of master (24/07/2022)
+
+Upgrading from v1.x? **Check UPGRADE.md**
 
 ## v1.9.3
 
