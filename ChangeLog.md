@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1
+
+- Removed use of dompdf (23/02/2024)
+
 ## v4.0
 
 - Changed to new recomended bundle SF 7 structure (15/01/2024)
