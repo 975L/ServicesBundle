@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.2
+
+- Added Twig Extension AssetExists() (09/03/2024)
+
 ## v4.1
 
 - Removed use of dompdf (23/02/2024)

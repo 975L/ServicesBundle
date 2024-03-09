@@ -1,7 +1,7 @@
 <?php
 /*
- * (c) 2019: 975L <contact@975l.com>
- * (c) 2019: Laurent Marquet <laurent.marquet@laposte.net>
+ * (c) 2024: 975L <contact@975l.com>
+ * (c) 2024: Laurent Marquet <laurent.marquet@laposte.net>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
@@ -13,7 +13,7 @@ use c975L\ConfigBundle\Service\ConfigServiceInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class TemplateExists extends AbstractExtension
+class AssetExists extends AbstractExtension
 {
     public function __construct(private readonly ConfigServiceInterface $configService)
     {
@@ -21,16 +21,16 @@ class TemplateExists extends AbstractExtension
 
     public function getFunctions(): array
     {
-        return [new TwigFunction('template_exists', $this->templateExists(...))];
+        return [new TwigFunction('asset_exists', $this->assetExists(...))];
     }
 
     /**
      * Checks if the template exists
      */
-    public function templateExists($template)
+    public function assetExists($asset)
     {
         $root = $this->configService->getContainerParameter('kernel.project_dir');
 
-        return is_file($root . '/templates/' . $template);
+        return is_file($root . '/public/' . $asset);
     }
 }
