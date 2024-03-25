@@ -18,8 +18,8 @@ find $BackupFolder/ -type d -empty -delete;
 Duration=$SECONDS;
 echo $'\n''End of backup: '`date +"%F %T"`' - Duration: '$(($Duration / 60))' minutes and '$(($Duration % 60))' seconds' >> $tmpEmailFile;
 
-#Sends by email once a day at the hour specified in config file
-if [[ $HourNumber == $HourCompleteBackupWebsite ]]; then
+#Sends by email once a week (monday) at the hour specified in config file
+if [[ $HourNumber == $HourCompleteBackupWebsite ]] && [[ $WeekDayNumber == 1 ]]; then
     cat $tmpEmailFile;
     rm $tmpEmailFile;
 fi
