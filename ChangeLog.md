@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.2.2
+
+- Changed DependencyInjection Extension (10/09/2024)
+
 ## v4.2.1
 
 - Changed frequency for Backup email to once a week( monday) (25/03/2024)
