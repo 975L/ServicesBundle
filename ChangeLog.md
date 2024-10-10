@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.2.3
+
+- Modified Twig extension AssetExists to take into account folder assets (10/10/2024)
+
 ## v4.2.2
 
 - Changed DependencyInjection Extension (10/09/2024)

@@ -31,6 +31,6 @@ class AssetExists extends AbstractExtension
     {
         $root = $this->configService->getContainerParameter('kernel.project_dir');
 
-        return is_file($root . '/public/' . $asset);
+        return is_file($root . '/public/' . $asset) || is_file($root . '/assets/' . $asset);
     }
 }
