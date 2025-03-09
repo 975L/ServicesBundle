@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.2.4
+
+- Added ? to avoid deprecation (09/03/2025)
+
 ## v4.2.3
 
 - Modified Twig extension AssetExists to take into account folder assets (10/10/2024)

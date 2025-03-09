@@ -45,7 +45,7 @@ class ServiceTools implements ServiceToolsInterface
     /**
      * {@inheritdoc}
      */
-    public function createFlash(string $text, string $translationDomain = null, string $style = 'success', array $options = [])
+    public function createFlash(string $text, ?string $translationDomain = null, string $style = 'success', array $options = [])
     {
         if (null !== $this->request) {
             if (null !== $translationDomain) {
